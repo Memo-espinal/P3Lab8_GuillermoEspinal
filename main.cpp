@@ -85,23 +85,72 @@ void CargarArchivo(){
 }
 void Interfaz(Usuario* usuario){
 	loop:
+		//agarramos los following del user
 		vector<Usuario*>follow;
 		follow=usuario->getFollowing();
-		
+		//verificamos si sigue a alguien
 		if (follow.size()>0){
 			vector<Post*>posts;
-			for(){
-				
+			for(int i =0 ; i<follow.size();i++ ){
+				posts=follow[i]->getPosts();
+				for(int j = 0 ; j < posts.size();i++){
+					cout <<follow[i]->getNick()<<endl;
+				}
 			}
 		}
-		cout<< "Sup perro "<< usuario->getName()<< endl;
-		Crear postComentar postDar likeDar hateSeguirusuarioDejar de seguir a un usuario
+		cout<< "Bienvenido :"<< usuario->getName()<< endl;
+		//Crear postComentar postDar likeDar hateSeguirusuarioDejar de seguir a un usuario
+		int resp;
 		cout << "1.- Crear Post"<<endl;
 		cout << "2.- Comentar post"<< endl;
 		cout <<"3.-Dar like"<<endl;
 		cout <<"4.-Dar hate"<< endl;
 		cout <<"5.- Seguir usuario"<< endl;
-		cout <<"6.- Dejar de seguir a un usuario"
+		cout <<"6.- Dejar de seguir a un usuario"<< endl;
+		cin>> resp;
+		switch(resp){
+			case 1:{
+				string titu,cont;
+				int likes=0,hates=0;
+				
+				cout<< "Ingrese el titulo : "<< endl;
+				getline(cin,titu);	
+				getline(cin,titu);	
+				cout<< "Ingrese el contenido : "<< endl;
+				getline(cin,cont);
+				string let = titu+","+cont+","+to_string(likes)+","+to_string(hates)+"|";
+				//s
+				ifstream leer;
+				string nombre,post,contra,nick,buffer;
+				vector<string>splitted;
+				leer.open("Usuarios.txt",ios::in);
+				ofstream aux("auxiliar.txt",ios::out);
+				if(leer.is_open()){
+					while(!leer.eof()){
+						leer>>buffer;
+						splitted=split(buffer,";");
+						nombre= splitted[0];
+						nick=splitted[1];
+						contra=splitted[2];
+						post=splitted[3];
+						if (nick==usuario->getNick()){
+							aux<< nombre <<';'<< nick<<';'<<contra<<';'<<post<<let<< '\n';
+						}else{
+							aux<< nombre <<';'<< nick<<';'<<contra<<';'<<post<< '\n';
+						}
+						
+					}
+					leer.close();
+					aux.close();
+				}else{
+					cout<<"ERROR\n";
+				}
+				remove("Usuarios.txt");
+				rename("auxiliar.txt","Usuarios.txt");
+				goto loop;
+				break;
+			}
+		}
 		//break;
 }
 
