@@ -126,9 +126,12 @@ void Interfaz(Usuario* usuario){
 				leer.open("Usuarios.txt",ios::in);
 				ofstream aux("auxiliar.txt",ios::out);
 				if(leer.is_open()){
-					while(!leer.eof()){
-						leer>>buffer;
+					while(getline(leer,buffer)){
+						if(buffer.length()>0){
+						getline(leer,buffer);
+					//	cout << buffer << endl;
 						splitted=split(buffer,";");
+						cout <<"size del spilltede"<< splitted.size();
 						nombre= splitted[0];
 						nick=splitted[1];
 						contra=splitted[2];
@@ -137,8 +140,8 @@ void Interfaz(Usuario* usuario){
 							aux<< nombre <<';'<< nick<<';'<<contra<<';'<<post<<let<< '\n';
 						}else{
 							aux<< nombre <<';'<< nick<<';'<<contra<<';'<<post<< '\n';
-						}
-						
+						}	
+					}
 					}
 					leer.close();
 					aux.close();
