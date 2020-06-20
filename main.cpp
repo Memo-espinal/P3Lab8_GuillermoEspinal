@@ -124,14 +124,14 @@ void Interfaz(Usuario* usuario){
 				string nombre,post,contra,nick,buffer;
 				vector<string>splitted;
 				leer.open("Usuarios.txt",ios::in);
-				ofstream aux("auxiliar.txt",ios::out);
+				ofstream aux("auxiliar.txt",ios::app);
 				if(leer.is_open()){
 					while(getline(leer,buffer)){
 						if(buffer.length()>0){
-						getline(leer,buffer);
+						//getline(leer,buffer);
 					//	cout << buffer << endl;
 						splitted=split(buffer,";");
-						cout <<"size del spilltede"<< splitted.size();
+						//cout <<"size del spilltede"<< splitted.size();
 						nombre= splitted[0];
 						nick=splitted[1];
 						contra=splitted[2];

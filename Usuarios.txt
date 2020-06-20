@@ -1,1 +1,3 @@
-Laura Medina;Lau;123;--
+LAURSA MEDINA;lau;123;--
+MEMO;memo;123;--asdmada,asdqa,0,0|
+MARCO LOLO;lolo;123;--
